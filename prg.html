@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile Card</title>
+
+    <style>
+        /* Body Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* ID Selector for Card */
+        #profile-card {
+            background-color: white;
+            width: 300px;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+
+        /* Hover Effect on Card */
+        #profile-card:hover {
+            transform: scale(1.05);
+        }
+
+        /* Class Selector for Image */
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid #3498db;
+        }
+
+        /* Class Selector for Name */
+        .student-name {
+            color: #2c3e50;
+            margin-top: 15px;
+        }
+
+        /* Class Selector for Details */
+        .details {
+            color: #555;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        /* ID Selector for Button */
+        #view-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        /* Hover Effect on Button */
+        #view-btn:hover {
+            background-color: #21618c;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="profile-card">
+        <img src="https://via.placeholder.com/120" alt="Student Image" class="profile-image">
+
+        <h2 class="student-name">Aryan Bista</h2>
+
+        <p class="details">
+            Student of BSc Computing <br>
+            Presidential Graduate School
+        </p>
+
+        <button id="view-btn">View Profile</button>
+    </div>
+
+</body>
+</html>
