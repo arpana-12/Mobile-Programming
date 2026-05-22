@@ -1,0 +1,14 @@
+ body {
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        #box {
+            width: 100px;
+            height: 100px;
+            background-color: plum;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
