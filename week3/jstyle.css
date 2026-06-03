@@ -1,0 +1,54 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  padding: 20px;
+}
+
+#profile-card {
+  width: 350px;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px solid #ddd;
+  transition: 0.3s;
+}
+
+#profile-photo {      
+width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  display: block;
+  
+}
+
+.highlighted {
+  border: 4px solid gold;
+}
+
+.dark-mode {
+  background: #2c3e50;
+  color: white;
+}
+
+.rounded {
+  border-radius: 50%;
+}
+
+.shadow {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+button {
+  margin: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+#output {
+  margin-top: 20px;
+  padding: 10px;
+  background: #fff;
+  border: 1px solid #ccc;
+  min-height: 20px;
+}
