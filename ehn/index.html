@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EHN — Emergency Help Network</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.31.0/webfont/tabler-icons.min.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+</head>
+<body>
+<div class="app" id="app">
+
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <div class="logo">
+      <div class="logo-dot"></div>
+      <div class="logo-text"><span>EHN</span> — Emergency Help Network</div>
+    </div>
+    <div class="live-pill"><div class="live-dot"></div>LIVE</div>
+  </header>
+
+  <!-- PAGES -->
+  <main class="main-scroll" id="mainScroll">
+
+    <!-- ═══ HOME PAGE ═══ -->
+    <section class="page active" id="page-home">
+
+      <div class="hero fade-in">
+        <div class="hero-city"><i class="ti ti-map-pin"></i> Kathmandu Metro Area</div>
+        <div class="hero-eta">Response in <span>4 min</span></div>
+        <div class="hero-sub">3 ambulances · 2 hospitals · 1 police unit nearby</div>
+      </div>
+
+      <div class="sos-wrap fade-in" style="animation-delay:.1s">
+        <div class="sos-outer">
+          <div class="sos-ring"></div>
+          <div class="sos-ring2"></div>
+          <button class="sos-btn" id="sosBtn" onclick="SOS.trigger()" aria-label="Tap to send SOS alert">
+            <div class="sos-label">SOS</div>
+            <div class="sos-sub" id="sosSub">TAP TO ALERT</div>
+          </button>
+        </div>
+      </div>
+
+      <div class="stats fade-in" style="animation-delay:.15s">
+        <div class="stat g"><div class="stat-num" id="statBeds">12</div><div class="stat-lbl">Beds Available</div></div>
+        <div class="stat a"><div class="stat-num" id="statAmb">3</div><div class="stat-lbl">Ambulances</div></div>
+        <div class="stat r"><div class="stat-num" id="statDonors">47</div><div class="stat-lbl">Donors Nearby</div></div>
+      </div>
+
+      <div class="section fade-in" style="animation-delay:.2s">
+        <div class="sec-head">
+          <div class="sec-title">Nearby Units</div>
+          <button class="sec-link" onclick="Nav.go('map')">View map →</button>
+        </div>
+        <div class="unit-list" id="unitList"></div>
+      </div>
+
+      <div class="section fade-in" style="animation-delay:.25s">
+        <div class="sec-head"><div class="sec-title">Quick Actions</div></div>
+        <div class="qa-grid" id="qaGrid"></div>
+      </div>
+
+    </section>
+
+    <!-- ═══ MAP PAGE ═══ -->
+    <section class="page" id="page-map">
+      <div class="page-hero">
+        <div class="page-hero-title">Live Map</div>
+        <div class="page-hero-sub">Real-time unit tracking</div>
+      </div>
+      <div class="section">
+        <div class="map-box">
+          <div class="map-grid-bg"></div>
+          <svg class="map-svg" viewBox="0 0 300 180" xmlns="http://www.w3.org/2000/svg">
+            <!-- Roads -->
+            <line x1="0" y1="90" x2="300" y2="90" stroke="rgba(255,255,255,0.06)" stroke-width="8"/>
+            <line x1="150" y1="0" x2="150" y2="180" stroke="rgba(255,255,255,0.06)" stroke-width="8"/>
+            <line x1="0" y1="50" x2="300" y2="130" stroke="rgba(255,255,255,0.04)" stroke-width="4"/>
+            <!-- You -->
+            <circle cx="150" cy="90" r="7" fill="#ff2222" opacity="0.9"/>
+            <circle cx="150" cy="90" r="14" fill="none" stroke="#ff2222" stroke-width="1.5" opacity="0.4"/>
+            <circle cx="150" cy="90" r="22" fill="none" stroke="#ff2222" stroke-width="1" opacity="0.15"/>
+            <!-- Ambulance 1 -->
+            <circle cx="95" cy="55" r="5" fill="#ff2222" opacity="0.7"/>
+            <text x="86" y="48" font-size="8" fill="#ff6666" font-family="DM Sans">AMB-04</text>
+            <!-- Ambulance 2 -->
+            <circle cx="218" cy="130" r="5" fill="#ff2222" opacity="0.7"/>
+            <text x="208" y="148" font-size="8" fill="#ff6666" font-family="DM Sans">AMB-09</text>
+            <!-- Hospital -->
+            <circle cx="210" cy="52" r="6" fill="#3b82f6"/>
+            <text x="218" y="56" font-size="8" fill="#60a5fa" font-family="DM Sans">Norvic</text>
+            <!-- Police -->
+            <circle cx="72" cy="130" r="5" fill="#fbbf24"/>
+            <text x="58" y="147" font-size="8" fill="#fbbf24" font-family="DM Sans">PL-07</text>
+            <!-- Fire -->
+            <circle cx="258" cy="85" r="5" fill="#fb923c"/>
+            <text x="248" y="78" font-size="8" fill="#fb923c" font-family="DM Sans">FB-02</text>
+            <!-- Distance rings -->
+            <circle cx="150" cy="90" r="55" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4 4"/>
+            <circle cx="150" cy="90" r="90" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1" stroke-dasharray="4 4"/>
+          </svg>
+          <div class="map-legend">
+            <span><div class="dot rd"></div>You</span>
+            <span><div class="dot rd" style="opacity:.6"></div>Ambulance</span>
+            <span><div class="dot bl"></div>Hospital</span>
+            <span><div class="dot am"></div>Police</span>
+            <span><div class="dot or"></div>Fire</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="sec-head"><div class="sec-title">All Units</div></div>
+        <div class="unit-list" id="unitListMap"></div>
+      </div>
+    </section>
+
+    <!-- ═══ HOSPITALS PAGE ═══ -->
+    <section class="page" id="page-hospitals">
+      <div class="page-hero">
+        <div class="page-hero-title">Hospitals</div>
+        <div class="page-hero-sub">Bed availability — updated live</div>
+      </div>
+      <div class="section" id="hospitalList"></div>
+
+      <div class="section">
+        <div class="sec-head"><div class="sec-title">Blood Availability</div>
+          <button class="sec-link" onclick="Toast.show('Opening donor matching...')">Find donor →</button>
+        </div>
+        <div class="blood-grid" id="bloodGrid"></div>
+      </div>
+    </section>
+
+    <!-- ═══ PROFILE PAGE ═══ -->
+    <section class="page" id="page-profile">
+      <div class="page-hero">
+        <div class="page-hero-title">My Profile</div>
+        <div class="page-hero-sub">Emergency info & settings</div>
+      </div>
+      <div class="section">
+        <div class="profile-card">
+          <div class="profile-avatar">RS</div>
+          <div class="profile-info">
+            <div class="profile-name">Ramesh Shrestha</div>
+            <div class="profile-sub">Blood Type: <strong>O+</strong> · Kathmandu</div>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <div class="sec-head"><div class="sec-title">Emergency Info</div></div>
+        <div class="info-list" id="emergencyInfo"></div>
+      </div>
+      <div class="section">
+        <div class="sec-head"><div class="sec-title">Settings</div></div>
+        <div class="settings-list" id="settingsList"></div>
+      </div>
+      <div class="section">
+        <div class="sec-head"><div class="sec-title">Recent Alerts</div></div>
+        <div class="history-list" id="historyList"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- BOTTOM NAV -->
+  <nav class="bottom-nav" id="bottomNav">
+    <button class="nav-item active" data-page="home" onclick="Nav.go('home',this)">
+      <i class="ti ti-home"></i><span>Home</span>
+    </button>
+    <button class="nav-item" data-page="map" onclick="Nav.go('map',this)">
+      <i class="ti ti-map"></i><span>Map</span>
+    </button>
+    <button class="nav-item" data-page="hospitals" onclick="Nav.go('hospitals',this)">
+      <i class="ti ti-building-hospital"></i><span>Hospitals</span>
+    </button>
+    <button class="nav-item" data-page="profile" onclick="Nav.go('profile',this)">
+      <i class="ti ti-user"></i><span>Profile</span>
+    </button>
+  </nav>
+
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- SCRIPTS -->
+<script src="js/data.js"></script>
+<script src="js/components.js"></script>
+<script src="js/sos.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/toast.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

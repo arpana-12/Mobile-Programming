@@ -1,0 +1,207 @@
+/* ============================================================
+   EHN — Emergency Help Network
+   style.css — Global styles, variables, layout
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap');
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --red:        #ff2222;
+  --red-dim:    rgba(255,34,34,0.14);
+  --red-glow:   rgba(255,34,34,0.25);
+  --green:      #4ade80;
+  --green-dim:  rgba(74,222,128,0.12);
+  --blue:       #3b82f6;
+  --blue-dim:   rgba(59,130,246,0.12);
+  --amber:      #fbbf24;
+  --amber-dim:  rgba(251,191,36,0.12);
+  --orange:     #fb923c;
+  --orange-dim: rgba(251,146,60,0.12);
+
+  --bg:         #0a0f1e;
+  --bg2:        #0d1424;
+  --bg3:        #111827;
+  --border:     rgba(255,255,255,0.07);
+  --border-h:   rgba(255,34,34,0.28);
+  --text:       #e5e7eb;
+  --muted:      #6b7280;
+
+  --font-head:  'Rajdhani', sans-serif;
+  --font-body:  'DM Sans', sans-serif;
+
+  --radius-sm:  8px;
+  --radius-md:  11px;
+  --radius-lg:  14px;
+  --radius-xl:  20px;
+}
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+/* ── APP SHELL ── */
+.app {
+  max-width: 430px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+
+/* ── TOP BAR ── */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: var(--bg2);
+  border-bottom: 0.5px solid var(--border);
+  position: sticky; top: 0; z-index: 200;
+}
+.logo { display: flex; align-items: center; gap: 9px; }
+.logo-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--red);
+  animation: blink 1.6s ease-in-out infinite;
+}
+.logo-text {
+  font-family: var(--font-head);
+  font-size: 16px; font-weight: 600;
+  letter-spacing: 0.04em; color: #fff;
+}
+.logo-text span { color: var(--red); }
+.live-pill {
+  display: flex; align-items: center; gap: 5px;
+  font-family: var(--font-head);
+  font-size: 11px; letter-spacing: 0.12em; color: var(--green);
+  background: var(--green-dim);
+  border: 0.5px solid rgba(74,222,128,0.3);
+  padding: 4px 11px; border-radius: 20px;
+}
+.live-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--green);
+  animation: blink 1s ease-in-out infinite;
+}
+
+/* ── MAIN SCROLL AREA ── */
+.main { flex: 1; overflow-y: auto; padding-bottom: 8px; }
+
+/* ── BOTTOM NAV ── */
+.bottom-nav {
+  display: flex;
+  background: var(--bg2);
+  border-top: 0.5px solid var(--border);
+  padding: 10px 0 18px;
+  position: sticky; bottom: 0; z-index: 200;
+}
+.nav-item {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; gap: 4px;
+  cursor: pointer;
+  font-size: 10px; color: var(--muted);
+  letter-spacing: 0.04em;
+  transition: color 0.2s;
+  background: none; border: none;
+  font-family: var(--font-body);
+}
+.nav-item i { font-size: 21px; }
+.nav-item.active { color: var(--red); }
+.nav-item:hover { color: var(--text); }
+
+/* ── SECTIONS ── */
+.section { padding: 0 16px 18px; }
+.sec-head {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 10px;
+}
+.sec-title {
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+}
+.sec-link {
+  font-size: 11px; color: var(--red);
+  background: none; border: none; cursor: pointer;
+  font-family: var(--font-body);
+}
+
+/* ── CARD BASE ── */
+.card {
+  background: var(--bg2);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-md);
+  transition: border-color 0.2s;
+}
+.card:hover { border-color: var(--border-h); }
+
+/* ── TOAST ── */
+.toast {
+  position: fixed;
+  top: 70px; left: 50%;
+  transform: translateX(-50%) translateY(-16px);
+  background: var(--green); color: #000;
+  font-size: 12px; font-weight: 500;
+  padding: 9px 18px; border-radius: 30px;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.28s, transform 0.28s;
+  z-index: 999; white-space: nowrap;
+  max-width: 90vw; text-align: center;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+.toast.red { background: var(--red); color: #fff; }
+
+/* ── PAGE VISIBILITY ── */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ── ANIMATIONS ── */
+@keyframes blink {
+  0%,100% { box-shadow: 0 0 0 3px var(--red-glow); }
+  50%      { box-shadow: 0 0 0 7px rgba(255,34,34,0.06); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes ripple {
+  0%   { opacity: 0.85; transform: scale(0.88); }
+  100% { opacity: 0;    transform: scale(1.22); }
+}
+.fade-in { animation: fadeUp 0.45s ease both; }
+.fade-in-1 { animation: fadeUp 0.45s 0.08s ease both; }
+.fade-in-2 { animation: fadeUp 0.45s 0.15s ease both; }
+.fade-in-3 { animation: fadeUp 0.45s 0.22s ease both; }
+.fade-in-4 { animation: fadeUp 0.45s 0.3s ease both; }
+.fade-in-5 { animation: fadeUp 0.45s 0.38s ease both; }
+
+/* ── UTILITY ── */
+.green-text  { color: var(--green); }
+.red-text    { color: var(--red); }
+.amber-text  { color: var(--amber); }
+.blue-text   { color: var(--blue); }
+.muted-text  { color: var(--muted); }
+
+.badge {
+  display: inline-flex; align-items: center;
+  font-size: 11px; font-weight: 500;
+  padding: 3px 10px; border-radius: 20px;
+  white-space: nowrap;
+}
+.badge-green { background: var(--green-dim); color: var(--green); }
+.badge-amber { background: var(--amber-dim); color: var(--amber); }
+.badge-red   { background: var(--red-dim);   color: #ff6666; }
+.badge-blue  { background: var(--blue-dim);  color: var(--blue); }
